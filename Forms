@@ -1,0 +1,15 @@
+    Private Sub resetButton_Click(sender As Object, e As EventArgs) Handles resetButton.Click
+        'Clears out all textboxes
+        'Hides the calculated textboxes
+        'Disable the calculate button
+
+        previousAmountBox.Clear()
+        currentAmountBox.Clear()
+
+        calculateButton.Enabled = False
+
+        percentChangeBox.Clear()
+        profitLossBox.Clear()
+        taxBox.Clear()
+
+    End Sub
