@@ -1,3 +1,65 @@
+   Option Explicit On
+Option Strict On
+
+Public Class Form1
+
+
+    Private Sub inputAmountsButton_Click(sender As Object, e As EventArgs) Handles inputAmountsButton.Click
+        ' Clear results from inputBoxLabel.Text
+
+        Dim previousAmountLabel, currentAmountBox As String
+        previousAmountLabel = previousAmountBox.Text
+
+        'enables calculate button again
+
+        calculateButton.Enabled = True
+
+    End Sub
+
+
+
+    Private Sub calculateButton_Click(sender As Object, e As EventArgs) Handles calculateButton.Click
+        ' Read in number from either currentAmountBox
+        ' and then format number
+        ' in three different ways to show decimals,
+        ' percent, and currency
+
+
+        Dim currentAmountBox As Double
+
+        ' Check where number might be located
+        If previousAmountBox.ToString <> "" Then
+            currentAmountBox = Convert.ToDouble(previousAmountBox.Text)
+        Else
+            MessageBox.Show("No number has been input")
+            Exit Sub
+        End If
+
+
+
+        ' Format number in three different ways:
+        ' * P for percent
+        ' * C for currency (default is US dollars)
+        ' * N for number
+        ' The letter refers to the format
+        ' The 2 refers to the number of decimal places shown
+
+        Const taxRate As Double
+        taxRate = (0.09)
+
+        percentChangeBox.Text = currentAmountBox.ToString("N2")
+        profitLossBox.Text = currentAmountBox.ToString("C2")
+        taxBox.Text = currentAmountBox.ToString("P2")
+
+        currentAmountBox = currentAmountBox / 100
+        profitLossBox.Text = Convert.ToInt32(profitLossBox) * 0.09
+
+
+
+    End Sub
+
+
+
     Private Sub resetButton_Click(sender As Object, e As EventArgs) Handles resetButton.Click
         'Clears out all textboxes
         'Hides the calculated textboxes
@@ -13,3 +75,6 @@
         taxBox.Clear()
 
     End Sub
+
+
+End Class
