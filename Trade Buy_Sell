@@ -1,0 +1,74 @@
+Option Explicit On
+Option Strict On
+
+Public Class pricingApp
+    Private Sub calculateButton_Click(sender As Object, e As EventArgs) Handles calculateButton.Click
+
+        ' catches errors in formatting and exceptions
+        ' determines the validity of the security ticker code
+        ' assigns the price and quantity to appropriate variables
+        ' constructs a sentence about the output presented
+
+        Dim ticker, buySell, message As String
+        Dim price, quantity As Integer
+
+        ticker = tickerTextBox.Text
+        buySell = buySellTextBox.Text
+        price = Convert.ToInt32(priceTextBox.Text)
+        quantity = Convert.ToInt32(quantityTextBox.Text)
+
+        Try
+            If ticker.Length > 5 Then
+                tickerTextBox.Text = "Not a valid security ticker code."
+            ElseIf ticker.Length = 0 Then
+                tickerTextBox.Text = "Value cannot be null"
+            ElseIf ticker = "" Then
+                tickerTextBox.Text = "Value cannot be null"
+
+            End If
+
+            If buySell.ToUpper = "buy" & "sell" Then
+                ' Uses Proper Case for "buy" or "sell"
+                buySellTextBox.Text = "" & StrConv(buySellTextBox.Text, vbProperCase)
+            Else
+                buySellTextBox.Text = vbNewLine & "Textbox is case sensitive."
+
+            End If
+
+
+        Catch fe As FormatException
+            Message = "Not a valid entry"
+            MessageBox.Show(Message, "Invalid Entry")
+            Exit Sub
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Exception Error")
+            Exit Sub
+
+        End Try
+
+        Dim totalAmount As Integer
+
+        totalAmount = price * quantity
+
+        ' Displays the statement
+        resultTextBox.Text = "The purchase of" & quantity & " shares of " & ticker & " at the market price of " & price & " will cost " & totalAmount & "."
+        resultTextBox.AppendText("The sales of " & quantity & " shares of " & ticker & " at the market price of " & price & " will yield " & totalAmount & ".")
+
+
+    End Sub
+
+    Private Sub clearButton_Click(sender As Object, e As EventArgs) Handles clearButton.Click
+
+        ' clears all the inputs and 
+        ' refocuses on the security ticker code
+
+        tickerTextBox.Clear()
+        priceTextBox.Clear()
+        quantityTextBox.Clear()
+        buySellTextBox.Clear()
+        resultTextBox.Clear()
+
+        tickerTextBox.Focus()
+
+    End Sub
+End Class
