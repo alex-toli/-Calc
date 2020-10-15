@@ -1,0 +1,82 @@
+Public Class Form1
+    Private Sub numberCompareButton_Click(sender As Object, e As EventArgs) Handles numberCompareButton.Click
+
+        ' Clears out the outpt label from previous ops
+        ' Traps erros associated with number input
+
+        Dim Num1, Num2 As Integer
+        Dim message As String
+
+        Num1 = Convert.ToInt32(num1TextBox.Text)
+        Num2 = Convert.ToInt32(num2TextBox.Text)
+
+
+        ' Check for match
+        Try
+            If Num1 > Num2 Then
+                reportTextBox.Text = Num1 & " is greater than " & Num2
+            ElseIf Num1 < Num2 Then
+                reportTextBox.Text = Num2 & " is greater than " & Num1
+            ElseIf Num1 = Num2 Then
+                reportTextBox.Text = Num1 & " equal to " & Num2
+            Else
+                reportTextBox.Text = " Not a valid number "
+            End If
+
+        Catch oe As OverflowException
+            message = "Ending number is too large"
+            MessageBox.Show(message, "Overflow")
+            Exit Sub
+        Catch fe As FormatException
+            message = "Numbers not valid"
+            MessageBox.Show(message, "Invalid Entry")
+            Exit Sub
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Exception Error")
+            Exit Sub
+
+        End Try
+
+        num1TextBox.Clear()
+        num2TextBox.Clear()
+
+    End Sub
+
+    Private Sub stringCompareButton_Click(sender As Object, e As EventArgs) Handles stringCompareButton.Click
+
+        ' Clears out the output label
+        ' Checks the validity of the entries in both boxes
+        ' Stores variable in Propercases
+
+        Dim Strng1, Strng2 As String
+        Dim message As String
+
+        Strng1 = string1TextBox.Text
+        Strng2 = string2TextBox.Text
+
+        Try
+            If Strng1.ToUpper > Strng2.ToUpper Then
+                reportTextBox.Text = Strng1 & " is not equal to " & Strng2
+            ElseIf Strng1.ToUpper < Strng2.ToUpper Then
+                reportTextBox.Text += vbNewLine & Strng1 & " is not equal to " & Strng2
+            ElseIf Strng1.ToUpper = Strng2.ToUpper Then
+                reportTextBox.Text += vbNewLine &Strng1 & " equal to " & Strng2
+            End If
+
+
+        Catch fe As FormatException
+            message = "Not a valid entry"
+            MessageBox.Show(Message, "Invalid Entry")
+            Exit Sub
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Exception Error")
+            Exit Sub
+
+        End Try
+
+
+        string1TextBox.Clear()
+        string2TextBox.Clear()
+
+    End Sub
+End Class
