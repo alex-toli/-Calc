@@ -1,0 +1,274 @@
+
+Option Explicit On
+Option Strict On
+
+Public Class Maze
+    Private Sub startLabel_Click(sender As Object, e As EventArgs) Handles startLabel.Click
+        ' changes the cursor from
+        ' default to cross
+
+        Cursor = Cursors.Cross
+
+    End Sub
+
+    Public Sub New()
+        ' This call is required by Windows Forms Designer.
+        InitializeComponent()
+        ' Add any initialization after the InitializeComponent() call.
+        MoveToStart()
+    End Sub
+
+    Private Sub finishLabel_MouseEnter() Handles finishLabel.MouseEnter
+        ' Show a congratulatory MessageBox, then close the form.
+        MessageBox.Show("Congratulations!")
+        Close()
+    End Sub
+
+    ''' <summary>
+    ''' Move the mouse pointer to a point 10 pixels down and to the right
+    ''' of the starting point in the upper-left corner of the maze.
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub MoveToStart()
+        Dim startingPoint = startLabel.Location
+        startingPoint.Offset(10, 10)
+        Cursor.Position = PointToScreen(startingPoint)
+    End Sub
+
+
+    Private Sub easterEggButton_Click(sender As Object, e As EventArgs) Handles easterEggButton.Click
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        Dim startingPoint = easterEggButton.Location
+        startingPoint.Offset(10, 10)
+        Cursor.Position = PointToScreen(startingPoint)
+        Cursor = Cursors.Cross
+    End Sub
+
+
+    Private Sub Label_1_MouseEnter(sender As Object, e As EventArgs) Handles Label_1.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+
+    End Sub
+
+    Private Sub Label_2_MouseEnter(sender As Object, e As EventArgs) Handles Label_2.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+
+    End Sub
+
+    Private Sub Label_3_mouseenter(sender As Object, e As EventArgs) Handles Label_3.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_4_mouseenter(sender As Object, e As EventArgs) Handles Label_4.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Labe_5_mouseenter(sender As Object, e As EventArgs) Handles Label_5.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_6_mouseenter(sender As Object, e As EventArgs) Handles Label_6.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_7_MouseEnter(sender As Object, e As EventArgs) Handles Label_7.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Label_8_MouseEnter(sender As Object, e As EventArgs) Handles Label_8.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_9_MouseEnter(sender As Object, e As EventArgs) Handles Label_9.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_10_MouseEnter(sender As Object, e As EventArgs) Handles Label_10.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_11_MouseEnter(sender As Object, e As EventArgs) Handles Label_11.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+
+    End Sub
+
+    Private Sub Label_12_MouseEnter(sender As Object, e As EventArgs) Handles Label_12.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_13_MouseEnter(sender As Object, e As EventArgs) Handles Label_13.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_14_MouseEnter(sender As Object, e As EventArgs) Handles Label_14.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+
+    End Sub
+
+    Private Sub Label_15_MouseEnter(sender As Object, e As EventArgs) Handles Label_15.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_16_MouseEnter(sender As Object, e As EventArgs) Handles Label_16.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_17_MouseEnter(sender As Object, e As EventArgs) Handles Label_17.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_18_MouseEnter(sender As Object, e As EventArgs) Handles Label_18.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub Label_19_MouseEnter(sender As Object, e As EventArgs) Handles Label_19.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+    Private Sub Label_20_MouseEnter(sender As Object, e As EventArgs) Handles Label_20.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+    Private Sub Label_21_MouseEnter(sender As Object, e As EventArgs) Handles Label_21.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+    End Sub
+    Private Sub Label_22_MouseEnter(sender As Object, e As EventArgs) Handles Label_22.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Try Again")
+        Cursor = Cursors.Default
+
+    End Sub
+    Private Sub Label_23_MouseEnter(sender As Object, e As EventArgs) Handles Label_23.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+        MessageBox.Show("Oops!")
+        Cursor = Cursors.Default
+
+    End Sub
+    Private Sub Label_24_MouseEnter(sender As Object, e As EventArgs) Handles Label_24.MouseEnter
+        ' When the mouse pointer hits a wall or enters the panel,
+        ' call the MoveToStart() method.
+        MoveToStart()
+
+        MessageBox.Show("Uh-Oh")
+        Cursor = Cursors.Default
+
+    End Sub
+
+
+End Class
