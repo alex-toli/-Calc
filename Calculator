@@ -1,0 +1,88 @@
+
+Option Explicit On
+Option Strict On
+
+
+Public Class CalculatorForm
+
+    ' this application will do math operations
+    ' add, subtract, multiply, and divide
+
+    Dim res, add, subt, mult, div As String
+    Dim first, second As Integer
+
+    Private Sub calcButton_Click(sender As Object, e As EventArgs) Handles calcButton.Click
+
+        ' calculation button will call the independent
+        ' sub procedure which will 
+        ' accept three inputs
+
+
+        Try
+            first = Convert.ToInt32(firstTextBox.Text)
+            second = Convert.ToInt32(secondTextBox.Text)
+
+            If addRadioButton.Checked = True Then
+                resultTextBox.Text = Convert.ToString(first + second)
+            End If
+
+            If subRadioButton.Checked = True Then
+                resultTextBox.Text = Convert.ToString(first - second)
+            End If
+
+            If multRadioButton.Checked = True Then
+                resultTextBox.Text = Convert.ToString(first * second)
+            End If
+
+            If divRadioButton.Checked = True Then
+                resultTextBox.Text = Convert.ToString(first / second)
+            End If
+
+        Catch fe As FormatException
+            MessageBox.Show("Enter only numbers in number 1 and number 2 textboxes", "Input format error")
+            Exit Sub
+        Catch ex As Exception
+            MessageBox.Show(Err.Description, "Error")
+            Exit Sub
+
+        End Try
+
+
+        res = resultTextBox.Text
+
+    End Sub
+
+
+    ' connects the radio buttons as strings
+    ' for the result report
+
+    Private Sub addRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles addRadioButton.CheckedChanged
+        If addRadioButton.Checked = True Then
+            add = " added to"
+
+            resultTextBox.Text = first & " " & add & " " & second & " equals " & res & vbNewLine
+        End If
+    End Sub
+
+    Private Sub subRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles subRadioButton.CheckedChanged
+        If subRadioButton.Checked = True Then
+            subt = " subtracted from"
+            resultTextBox.Text = first & " " & subt & " " & second & " equals " & res & vbNewLine
+        End If
+    End Sub
+
+    Private Sub multRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles multRadioButton.CheckedChanged
+        If multRadioButton.Checked = True Then
+            mult = " times"
+            resultTextBox.Text = first & " " & mult & " " & second & " equals " & res & vbNewLine
+        End If
+    End Sub
+
+    Private Sub divRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles divRadioButton.CheckedChanged
+        If divRadioButton.Checked = True Then
+            div = " divided by"
+            resultTextBox.Text = first & " " & div & " " & second & " equals " & res & vbNewLine
+        End If
+    End Sub
+
+End Class
