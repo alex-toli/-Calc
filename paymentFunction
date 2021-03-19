@@ -1,0 +1,44 @@
+Option Explicit On
+Option Strict On
+
+Public Class Form1
+    Private Sub calculateButton_Click(sender As Object, e As EventArgs) _
+        Handles calculateButton.Click
+
+        ' Determine the per period payment
+        ' amounts when given annual percentage
+        ' rate, term of loan in years and 
+        ' amount to finance
+
+        Dim aprate As Double, numPeriods As Double, financeAmt As Double
+        Dim paymentAmt As Double
+
+        Try
+            ' Divide apr by 100 to get into decimal format
+            aprate = Convert.ToDouble(aprTextBox.Text) / 100
+            numPeriods = Convert.ToDouble(termTextBox.Text)
+            financeAmt = Convert.ToDouble(finAmtTextBox.Text)
+
+            ' Divide APR by 12 to get into monthly rate
+            ' Multiply numPeriods by 12 to convert to months
+            ' Put negative in front of financeAmt to show positive payment
+            paymentAmt = Pmt(aprate / 12, numPeriods * 12, -financeAmt)
+
+            paymentLabel.Text = paymentAmt.ToString("C2")
+
+        Catch fe As FormatException
+            Dim message As String
+            message = "Check inputs to ensure they are valid numbers"
+            MessageBox.Show(message, "Invalid Number Error")
+            Exit Sub
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error")
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+End Class
