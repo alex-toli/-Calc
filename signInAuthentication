@@ -1,0 +1,81 @@
+Option Explicit On
+Option Strict Off
+Option Infer On
+
+Public Class signIn
+
+    Private Sub PreapprovalCheckToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreapprovalCheckToolStripMenuItem.Click
+        ' activates the PreApproval Form
+        preApprovalForm.ShowDialog()
+
+    End Sub
+
+    Private Sub ClientDataReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientDataReportToolStripMenuItem.Click
+        ' activates the Approval Report Form
+        approvalForm.ShowDialog()
+
+    End Sub
+
+    Private Sub signIn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'AuthenticationDataSet.tblAuthentication' table. You can move, or remove it, as needed.
+        Me.TblAuthenticationTableAdapter.Fill(Me.AuthenticationDataSet.tblAuthentication)
+
+    End Sub
+
+    Private Sub TblAuthenticationBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles TblAuthenticationBindingNavigatorSaveItem.Click
+        Me.Validate()
+        Me.TblAuthenticationBindingSource.EndEdit()
+        Me.TableAdapterManager.UpdateAll(Me.AuthenticationDataSet)
+
+    End Sub
+
+    Private Sub LogInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogInToolStripMenuItem.Click
+        ' Runs through the database
+        ' Matches the textbox entries
+
+
+        Dim user, pass As String
+
+
+
+        ' For username entry authentication
+        ' For password entry authentication
+
+        user = userTextBox.Text
+        pass = passwordTextBox.Text
+
+        For Each myRow In AuthenticationDataSet.tblAuthentication.Rows
+            If myRow.item("Username") = user Then
+                user += Convert.ToString(myRow.item("Username"))
+                If myRow.item("Password") = pass Then
+                    currentLabel.Text = user
+                    permissionLabel.Text = myRow.item("PermissionLevel")
+                    currentUser = user
+                    permissionLevel = myRow.item("PermissionLevel")
+                    Exit Sub
+
+                End If
+            End If
+        Next
+
+        MessageBox.Show("Invalid Entry")
+
+
+    End Sub
+
+    Private Sub LogOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogOutToolStripMenuItem.Click
+        ' clears out all variables
+        ' hence to disallow further navigation
+
+        ' clears textboxes
+        userTextBox.Clear()
+        passwordTextBox.Clear()
+
+        ' assigns a zero permission level 
+        currentLabel.Text = ""
+        permissionLabel.Text = "0"
+
+
+    End Sub
+
+End Class
