@@ -1,0 +1,117 @@
+Option Explicit On
+Option Strict Off
+Option Infer On
+
+Public Class approvalForm
+    Private Sub CloseFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseFormToolStripMenuItem.Click
+        ' closes the report Form
+        Me.Close()
+
+    End Sub
+
+    Private Sub ExitProgramToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitProgramToolStripMenuItem.Click
+        ' exits the application
+        signIn.Close()
+
+    End Sub
+
+    Private Sub TblApplicationBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles TblApplicationBindingNavigatorSaveItem.Click
+        Me.Validate()
+        Me.TblApplicationBindingSource.EndEdit()
+        Me.TableAdapterManager.UpdateAll(Me.LoanApplicationSecondDataSet)
+
+    End Sub
+
+    Private Sub approvalForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'LoanApplicationSecondDataSet.tblApplication' table. You can move, or remove it, as needed.
+        Me.TblApplicationTableAdapter.Fill(Me.LoanApplicationSecondDataSet.tblApplication)
+
+
+    End Sub
+
+    Private Sub ShowReport()
+        ' Loads the information in the
+        ' texbox for all permission lvls
+
+        ' hides Client App Info
+        ' for lvl 1 and 2 
+        ' and resizes the entire form
+
+
+
+        ' ZONED TEXTBOX
+
+        ' First section (0) is for security name
+        ' Second section (1) is for ticker symbol
+        ' Third section (2) is for security type
+        ' Fourth section (3) is for quantity N
+        ' Fifth section (5) is for current price C
+        ' Sixth section (6) is for current value C
+
+        Dim zones As String = "{0,-5}{1,-20}{2,15}{3,15}"
+
+        With loanApprovalTextBox
+            For Each myRow In LoanApplicationSecondDataSet.tblApplication.Rows
+
+
+                ' loanAmount, propValue,
+                ' income , term , interestRate ,
+                ' Location 
+
+                Dim loanStatus As Boolean
+                Dim clientName As String
+
+                clientName = myRow.item("ClientFirstName") & " " & myRow.item("ClientLastName")
+
+                loanStatus = loanApproval(Convert.ToDouble(myRow.item("LoanAmount")),
+                                          Convert.ToDouble(myRow.item("PropertyValue")),
+                                          Convert.ToDouble(myRow.item("ClientIncome")),
+                                          Convert.ToInt32(myRow.item("TermInMonths")),
+                                          Convert.ToDouble(myRow.item("AnnualInterestRate")),
+                                          myRow.item("PropertyState")
+                                          )
+                If loanStatus = True Then
+                    .Text += String.Format(zones, myRow.item("ApplicationID"), clientName,
+                                      myRow.item("PropertyState"), "Approved") & vbNewLine
+
+                Else
+                    .Text += String.Format(zones, myRow.item("ApplicationID"), clientName,
+                                      myRow.item("PropertyState"), "Denied") & vbNewLine
+                End If
+
+
+            Next
+
+            loanApprovalTextBox.Text += vbNewLine
+
+            ' Scroll to top by setting position and moving to position
+            .SelectionStart = 0
+            .ScrollToCaret()
+        End With
+
+
+    End Sub
+
+
+    Private Sub approvalForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        ' client information is not available 
+        ' to levels other than level 3
+        ' also then resize if not visible
+
+        currentUserTextBox.Text = currentUser
+        permissionTextBox.Text = permissionLevel
+
+        ShowReport()
+
+        If permissionTextBox.Text = "0" Or permissionTextBox.Text = "2" Or permissionTextBox.Text = "3" Then
+            TblApplicationDataGridView.Visible = False
+
+            Me.Width = 500
+            Me.Height = 500
+
+        End If
+
+    End Sub
+
+
+End Class
